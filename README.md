@@ -3,8 +3,8 @@
 
 <a href="https://arxiv.org/abs/2602.19063"><img src="https://img.shields.io/badge/arXiv-2501.01163-b31b1b" alt="arXiv"></a>
 <a href='https://drive.google.com/drive/folders/1g3ExoHlHh8fS-X_XJ1duEiCxfdiBC5sw'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Google%20Drive-Processed_Data-blue'></a>
-<a href="https://huggingface.co/FL4ST/3D-LLaVA-PoseAlign-T-clip03" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Clip,X=0.3-Orange" alt="ckpt-X=0.3"></a>
-<a href="https://huggingface.co/FL4ST/3D-LLaVA-PoseAlign-T-best" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Top-Orange" alt="ckpt-Top"></a>
+<a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-cut03" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Clip,X=0.3-Orange" alt="ckpt-X=0.3"></a>
+<a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-top" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Top-Orange" alt="ckpt-Top"></a>
 
 [Quan Liu](https://github.com/liuQuan98)<sup>1</sup>, [Weihao Xuan](https://github.com/weihao1115)<sup>2,3</sup>, [Junjue Wang](https://github.com/Junjue-Wang)<sup>2</sup>, [Naoto Yokoya](https://naotoyokoya.com/)<sup>2,3</sup>, [Ling Shao](https://ling-shao.github.io/)<sup>4</sup>, [Shijian Lu](https://personal.ntu.edu.sg/shijian.lu/)<sup>1,&dagger;</sup>
 
