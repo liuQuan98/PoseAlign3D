@@ -209,10 +209,11 @@ bash llm_as_judge/eval_scripts/eval_scan2cap_subset.sh
 ## Citation
 
 ```bibtex
-@article{liu2025posealign,
+@article{liu2026direction,
   title={Direction-aware 3D Large Multimodal Models},
   author={Liu, Quan and Xuan, Weihao and Wang, Junjue and Yokoya, Naoto and Shao, Ling and Lu, Shijian},
-  year={2025}
+  journal={arXiv preprint arXiv:2602.19063},
+  year={2026}
 }
 ```
 
