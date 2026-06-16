@@ -209,10 +209,11 @@ bash llm_as_judge/eval_scripts/eval_scan2cap_subset.sh
 ## Citation
 
 ```bibtex
-@article{liu2026direction,
+@inproceedings{liu2026direction,
   title={Direction-aware 3D Large Multimodal Models},
   author={Liu, Quan and Xuan, Weihao and Wang, Junjue and Yokoya, Naoto and Shao, Ling and Lu, Shijian},
-  journal={arXiv preprint arXiv:2602.19063},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={9668--9678},
   year={2026}
 }
 ```
