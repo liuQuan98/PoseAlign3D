@@ -1,6 +1,7 @@
 <div align="center">
 <h1>Direction-aware 3D Large Multimodal Models</h1>
 
+<a href="https://openaccess.thecvf.com/content/CVPR2026/html/Liu_Direction-aware_3D_Large_Multimodal_Models_CVPR_2026_paper.html"><img src="https://img.shields.io/badge/CVPR-red" alt="CVPR"></a>
 <a href="https://arxiv.org/abs/2602.19063"><img src="https://img.shields.io/badge/arXiv-2501.01163-b31b1b" alt="arXiv"></a>
 <a href='https://drive.google.com/drive/folders/1g3ExoHlHh8fS-X_XJ1duEiCxfdiBC5sw'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Google%20Drive-Processed_Data-blue'></a>
 <a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-cut03" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Clip,X=0.3-Orange" alt="ckpt-X=0.3"></a>
