@@ -165,6 +165,9 @@ def eval_model(args):
     os.makedirs(os.path.dirname(answers_file), exist_ok=True)
     ans_file = open(answers_file, "w")
 
+    with open(args.sqa3d_pose_file, "r") as f:
+        sqa3d_pose = {d["question_id"]: d["pose"] for d in map(json.loads, f)}
+
     record = dict()
     for source in tqdm(questions):
         idx = source['question_id']
@@ -180,7 +183,10 @@ def eval_model(args):
 
         # data transformation
         # transform = Compose(vqa_transform_eval)
-        possible_pose = get_possible_pose(scan_file, args, object_id=-1) # no object id available for sqa3d
+        if args.use_random_pose:
+            possible_pose = get_possible_pose(scan_file, args, object_id=-1) # no object id available for sqa3d
+        else:
+            possible_pose = np.asarray(sqa3d_pose[idx]) # situated ego pose, no object_id -> pose selection
         if args.pose_aug_rot_std > 1e-6 or args.pose_aug_trans_std > 1e-6:
             possible_pose = perturb_pose_yaw_only(possible_pose, args.pose_aug_rot_std, args.pose_aug_trans_std, left_multiply=False)
 
@@ -321,6 +327,7 @@ if __name__ == "__main__":
     # newly added args for poseAlign
     parser.add_argument("--extra-data-file", type=str, default="playground/data/complementary_info/matched_ScanQA_v1.0_val.json")
     parser.add_argument("--pose-data-path-base", type=str, default="playground/poses/scans")
+    parser.add_argument("--sqa3d-pose-file", type=str, default="playground/data/complementary_info/sqa3d_pose.jsonl")
     parser.add_argument("--use-top-bottom-cut", type=str2bool, default=False, help="whether to use top-bottom cut when calculating possible poses")
     parser.add_argument("--use-random-pose", type=str2bool, default=False, help="whether to use random poses when calculating possible poses")
     parser.add_argument("--cut-ratio", type=float, default=0.2, help="the cut ratio for top-bottom cut")

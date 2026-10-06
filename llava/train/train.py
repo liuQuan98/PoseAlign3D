@@ -136,6 +136,7 @@ class DataArguments:
     cut_ratio: float = field(default=0.2)
     pose_data_path_base: Optional[str] = field(default="playground/poses/scans")
     extra_data_file: Optional[str] = field(default="playground/data/complementary_info/matched_ScanQA_v1.0_train.json")
+    sqa3d_pose_file: Optional[str] = field(default="playground/data/complementary_info/sqa3d_pose.jsonl")
     pose_aug_rot_std: float = field(default=0.)
     pose_aug_trans_std: float = field(default=0.)
 
@@ -774,17 +775,25 @@ class LazySupervisedDataset(Dataset):
                  data_args: DataArguments):
         super(LazySupervisedDataset, self).__init__()
 
+        self.sqa3d_idx_start = -1
+        self.sqa3d_idx_end = -1
+
         list_data_dict = []
         for dataset_idx, cur_data_path in enumerate(data_path):
             cur_list_data_dict = json.load(open(cur_data_path, "r"))
             if 'scanqa' in cur_data_path.lower():
                 self.scanqa_idx_start = len(list_data_dict)
+            if 'sqa3d' in cur_data_path.lower():
+                assert self.sqa3d_idx_start == -1, "only one sqa3d data file is supported"
+                self.sqa3d_idx_start = len(list_data_dict)
             for cur_data in cur_list_data_dict:
                 cur_data["id"] = "%02d"%dataset_idx + "_{}".format(cur_data["id"])
                 cur_data["scene_id"] = "d%02d-"%dataset_idx + cur_data["scene_id"]
                 list_data_dict.append(cur_data)
             if 'scanqa' in cur_data_path.lower():
                 self.scanqa_idx_end = len(list_data_dict) - 1
+            if 'sqa3d' in cur_data_path.lower():
+                self.sqa3d_idx_end = len(list_data_dict) - 1
 
         rank0_print("Formatting inputs...Skip in lazy mode")
         self.tokenizer = tokenizer
@@ -806,6 +815,8 @@ class LazySupervisedDataset(Dataset):
         self._build_pc_transform()
         with open(self.data_args.extra_data_file, 'r') as f:
             self.extra_data_dict = json.load(f)
+        with open(self.data_args.sqa3d_pose_file, 'r') as f:
+            self.sqa3d_pose = {d["question_id"]: d["pose"] for d in map(json.loads, f)}
             
 
     def _build_pc_transform(self):
@@ -1005,7 +1016,11 @@ class LazySupervisedDataset(Dataset):
                 object_id = conv_sources[0]['object_id']
                 pc_data_dict["object_id"] = object_id
 
-            if self.data_args.use_cam_instance_intersect:
+            if self.data_args.use_cam_instance_intersect and not self.data_args.use_random_pose and i >= self.sqa3d_idx_start and i <= self.sqa3d_idx_end:
+                # sqa3d: use the situated ego pose directly, no object_id -> pose selection
+                possible_camera_extrinsic = np.asarray(self.sqa3d_pose[f"train-{scene_name}-{i - self.sqa3d_idx_start}"])
+                pc_data_dict["possible_camera_extrinsic"] = possible_camera_extrinsic
+            elif self.data_args.use_cam_instance_intersect:
                 cam_instance_intersection_filemap = load_filemap(scene_name=scene_name)
 
                 if i > self.scanqa_idx_start and i <= self.scanqa_idx_end:

@@ -96,7 +96,7 @@ You can choose to download our pre-extracted pose files [here](https://drive.goo
 
 ### Miscellaneous Data
 
-Download `matched_ScanQA_v1.0_val.json` and `matched_ScanQA_v1.0_train.json` [here](https://drive.google.com/drive/folders/1g3ExoHlHh8fS-X_XJ1duEiCxfdiBC5sw?usp=sharing) and place them under `playground/data/complementary_info` to make up for the missing `object_id` field in 3D-LLAVA ScanQA data.
+Download `matched_ScanQA_v1.0_val.json`, `matched_ScanQA_v1.0_train.json`, and `sqa3d_pose.jsonl` [here](https://drive.google.com/drive/folders/1g3ExoHlHh8fS-X_XJ1duEiCxfdiBC5sw?usp=sharing) and place them under `playground/data/complementary_info` to make up for the missing `object_id` field in 3D-LLAVA ScanQA data and the missing ego pose in SQA3D data.
 
 ### PoseRecover Data
 
