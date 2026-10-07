@@ -4,8 +4,9 @@
 <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Liu_Direction-aware_3D_Large_Multimodal_Models_CVPR_2026_paper.html"><img src="https://img.shields.io/badge/CVPR-red" alt="CVPR"></a>
 <a href="https://arxiv.org/abs/2602.19063"><img src="https://img.shields.io/badge/arXiv-2501.01163-b31b1b" alt="arXiv"></a>
 <a href='https://drive.google.com/drive/folders/1g3ExoHlHh8fS-X_XJ1duEiCxfdiBC5sw'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Google%20Drive-Processed_Data-blue'></a>
-<a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-cut03" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Clip,X=0.3-Orange" alt="ckpt-X=0.3"></a>
-<a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-top" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Top-Orange" alt="ckpt-Top"></a>
+
+<a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-cut03-sqa3dFix" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Clip*,X=0.3-Orange" alt="ckpt-X=0.3"></a>
+<a href="https://huggingface.co/FL4ST/finetune-3d-llava-lora-PoseAlign-pc-top-sqa3dFix" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_Top*-Orange" alt="ckpt-Top"></a>
 <a href="https://huggingface.co/FL4ST/ll3da-generalist-posealign" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_LL3DA-Orange" alt="ckpt-LL3DA"></a>
 <a href="https://huggingface.co/FL4ST/ll3da-generalist-posealign-sonata" target="_blank"><img src="https://img.shields.io/badge/Checkpoint_LL3DA_SONATA-Orange" alt="ckpt-LL3DA-SONATA"></a>
 
@@ -30,6 +31,10 @@ We enable direction-aware 3D LMMs with two novel designs:
 - **PoseAlign**: A simple yet effective modifier that transforms the point cloud data to be aligned with the identified ego poses, enabling universal direction-awareness across existing 3D LMMs of different architectures.
 
 Extensive experiments show that our designs yield consistent improvements across multiple 3D LMM backbones such as LL3DA, LL3DA-SONATA, Chat-Scene, and 3D-LLAVA, improving ScanRefer mIoU by 30.0% and Scan2Cap LLM-as-judge accuracy by 11.7%.
+
+## News
+
+We recently found and fixed an implementational bug leading to PoesAlign using random poses on SQA3D. The codebase and the model weights are updated, the new weights now beats the previous version on almost all dimensions! Be sure to check the newest model checkpoints which are denoted with '*' suffix.
 
 ## Adapting PoseAlign Benchmark to Your Own Data
 
